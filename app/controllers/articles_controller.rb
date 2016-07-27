@@ -1,9 +1,17 @@
 # a new action (looking for a new articles route)
 class ArticlesController < ApplicationController
     
+    def index
+        @articles = Article.all #gets all the articles in the database
+    end
+    
     def new
     @article = Article.new
     
+    end
+    
+    def edit
+        @article = Article.find(params[:id])
     end
     
     def create
@@ -18,6 +26,17 @@ class ArticlesController < ApplicationController
             redirect_to article_path(@article)
         else
             render 'new' #render the new template again
+        end
+    end
+    
+    def update
+        @article = Article.find(params[:id])
+        
+        if @article.update(article_params)
+            flash[:notice] = "Article was successfully updated!"
+            redirect_to article_path(@article)
+        else
+            render 'edit'
         end
     end
     

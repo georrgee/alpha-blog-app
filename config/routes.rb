@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root 'pages#home'
-  get 'about', to: 'pages#about'
+  get 'pages/about', to: 'pages#about'
   
   resources :articles #gave us a new article path, a post to create article, edit, a patch, delete article path, etc
   

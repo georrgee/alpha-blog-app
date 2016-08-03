@@ -16,10 +16,13 @@ class ArticlesController < ApplicationController
     end
     
     def create
+        debugger
         #simply display what is submitted
         #render plain: params[:article].inspect
         
         @article = Article.new(article_params)
+        
+        @article.user = User.first
         
         if @article.save
             

@@ -20,13 +20,23 @@ $navbar-default-bg: #4e8448; // blue 30%
     
 }
 
+.navbar-collapse .navbar-nav > li > a {
+    
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-collapse .navbar-nav > li > a:hover{
+ 
+     color: #00A0C6;
+     text-decoration: none;
+     cursor: pointer;
+}
 
 .center {
     
     text-align: center;
 }
-
-
 
 .jumbotron {
     

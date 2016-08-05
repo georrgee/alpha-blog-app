@@ -29,7 +29,7 @@
     <!-- simple_fomrat: display the formatting that you use to display the article -->
     
     <div class="article-actions">
-        <% if logged_in? && current_user == @article.user %> <!-- @article because we are in the same file "show.html.erb" -->
+        <% if logged_in? && (current_user == @article.user || current_user.admin?) %> <!-- @article because we are in the same file "show.html.erb" -->
         <%= link_to "Edit this article", edit_article_path(@article), 
         class:"btn btn-xs btn-primary" %> 
         

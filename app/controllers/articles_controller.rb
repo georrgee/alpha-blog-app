@@ -1,6 +1,8 @@
 # a new action (looking for a new articles route)
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:edit, :update, :show, :destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
        # @articles = Article.all #gets all the articles in the database
@@ -23,7 +25,7 @@ class ArticlesController < ApplicationController
         
         @article = Article.new(article_params)
         
-        @article.user = User.first
+        @article.user = current_user
         
         if @article.save
             
@@ -65,9 +67,14 @@ class ArticlesController < ApplicationController
     end
     
     def set_article
-       
        @article = Article.find(params[:id])
-        
+    end
+    
+    def require_same_user
+       if current_user != @article.user
+           flash[:danger] = "You can only edit or delete your own articles"
+           redirect_to root_path
+       end
     end
     
 end

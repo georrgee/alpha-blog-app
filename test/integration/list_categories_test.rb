@@ -5,7 +5,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     def setup
     
         @category = Category.create(name: "lifestyle")
-        @category = Category.create(name: "programming")
+        @category2 = Category.create(name: "programming")
     
     end
     
@@ -16,7 +16,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
         
         # select a link and ensure that the link is to this
         assert_select "a[href=?]", category_path(@category), text: @category.name 
-        assert_select "a[href=?]" , category_path(@category2), text: @category2.name
+        assert_select "a[href=?]", category_path(@category2), text: @category2.name
     end
     
 end
